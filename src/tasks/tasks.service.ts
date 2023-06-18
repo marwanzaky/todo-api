@@ -36,4 +36,18 @@ export class TasksService {
         this.tasks.push(createTaskDto);
         return createTaskDto;
     }
+
+    update(id: number, updateTaskDto) {
+        const curTask = this.findOne(id);
+
+        if (curTask) {
+            this.tasks = this.tasks.map(task => {
+                if (task.id === id)
+                    return { ...task, ...updateTaskDto };
+                return task;
+            });
+        }
+
+        return curTask;
+    }
 }

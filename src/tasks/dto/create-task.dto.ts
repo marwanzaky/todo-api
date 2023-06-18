@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsBoolean, IsOptional, IsString } from "class-validator";
 
 export class CreateTaskDto {
     @IsString()
@@ -6,4 +6,8 @@ export class CreateTaskDto {
 
     @IsString()
     readonly description: string;
+
+    @IsOptional()
+    @IsBoolean()
+    readonly completed: boolean;
 }
