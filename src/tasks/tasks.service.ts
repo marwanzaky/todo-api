@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Task } from './entities/task';
+import { CreateTaskDto } from './dto/create-task.dto';
 
 @Injectable()
 export class TasksService {
@@ -32,16 +33,23 @@ export class TasksService {
         return this.tasks.find(task => task.id === id);
     }
 
-    create(createTaskDto) {
+    create(createTaskDto: CreateTaskDto) {
+        // Method 1
+        // const task: Task = {
+        //     id: Math.round(Math.random() * 1000),
+        //     ...createTaskDto
+        // };
+
+        // Method 2
         const task: Task = {
             id: Math.round(Math.random() * 1000),
             name: createTaskDto.name,
             description: createTaskDto.description,
-            completed: createTaskDto.complete ?? false
+            completed: createTaskDto.completed
         }
 
         this.tasks.push(task);
-        return createTaskDto;
+        return task;
     }
 
     update(id: number, updateTaskDto) {

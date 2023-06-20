@@ -9,5 +9,5 @@ export class CreateTaskDto {
 
     @IsOptional()
     @IsBoolean()
-    readonly completed: boolean;
+    readonly completed: boolean = false;
 }
