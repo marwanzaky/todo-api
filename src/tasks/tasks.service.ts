@@ -33,7 +33,14 @@ export class TasksService {
     }
 
     create(createTaskDto) {
-        this.tasks.push(createTaskDto);
+        const task: Task = {
+            id: Math.round(Math.random() * 1000),
+            name: createTaskDto.name,
+            description: createTaskDto.description,
+            completed: createTaskDto.complete ?? false
+        }
+
+        this.tasks.push(task);
         return createTaskDto;
     }
 
